@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Kopi kenangan</title>
+</head>
+<head>
+
+  <!--fonts-->
+  <link rel="preconnet" href="https://fonts.googleapis .com" />
+  <link rel="preconnet" href="https://fonts.gstatic.com" crossorigin />
+  <link
+  href="https//fonts.googleapis.com//css2?family=poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+  rel="stylesheet"
+  />
+
+  <!--feather Icons-->
+  <script src="https://unpkg.com/feather-incons"></script>
+
+  <!-- my style-->
+   <link rel="stylesheet" href="css/style.css" />
+
+   <!--alpine js-->
+   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+   <!--app-->
+   <script src="src//app.js" async></script>
+
+   <!--midtrans-->
+   <script type="text/javascript"
+   src="https://app.sandbox.midtrans.com/snap/snap.js"
+   data-client-key="SB-Mid-client-ma4t3hy1UrfO-rOa"></script>
+
+</head>
+
+
+<!--navbar start-->
+<nav class="navbar" x-data>
+  <a href="#" class="navbar-logo">kenangan<span></span>.</a>
+
+  <div class="navbar-nav">
+    <a href="#home">Home</a>
+    <a href="#about">Tentang kami</a>
+    <a href="#menu">Menu</a>
+    <a href="#products">produk</a>
+    <a href="#contac">kontak</a>
+  </div>
+
+  <div class="navbar-extra">
+    <a href="#" id="search-button"><i data-feather="search"></i></a>
+    <a href="#" id="shopping-cart-button">
+      <i data-feather="shooping-cart"></i>
+      <span clas="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+    </a>
+    <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+  </div>
+
+  <!--search form start -->
+  <div class="search-form">
+    <input type="search" id="search-box" placeholder="search here...">
+    <label for="search-box"><i data-feather="search"></i></label>
+  </div>
+  <!--search form end-->
+
+  <!--shooping cart start-->
+  <div class="shooping-cart">
+    <template x-for="(item, index) in $store.cart.items" x-keys="index">
+    <div class="cart-item">
+      <img :src="`img/products/${item.img}`" :alt="item.name">
+      <div class="item-detail">
+        <h3 x-text="item.name"></h3>
+        <div class="item-price">
+          <span x-text="rupiah(item.price)"></span> &times;
+          <button id="add" @click="$store.cart.remove(item.id)">&minus;</button>
+          <span x-text="item.quantity"></span>
+          <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+          <span x-text="rupiah(item.total)"></span>
+        </div>
+      </div>
+    </div>
+    </template>
+    <h4 x-show="!store.cart.items.length" style="margin-top: 1rem;">Cart is Emty </h4>
+    <h4 x-show="$store.cart.items.lenght">Total :<span x-text="rupiah($store.cart.total)"></span></h4>
+
+    <div class="form-container" x-show="$store.cart.items.lenght">
+      <form action="" id="checkoutForm">
+        <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+        <input type="hidden" name="total" x-model="$store.cart.total">
+        <h5>Costumer Detail</h5>
+
+        <label for="name">
+          <span>Name</span>
+          <input type="text" name="name" id="name">
+        </label>
+
+        <label for="email">
+          <span>Email</span>
+          <input type="text" name="email" id="email">
+        </label>
+
+        <label for="phone">
+          <span>Phone</span>
+          <input type="number" name="phone" id="phone" autocomplete="off">
+        </label>
+
+        <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">Checkout</button>
+      </form>
+    </div>
+  </div>
+  <!--shopping cart end-->
+
+</nav>
+<!--navbar end-->
+
+<!--Hero section start-->
+<section class="hero" id="home">
+  <div class="mask-container">
+    <main class="content">
+      <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. vitae, quae!</p>
+    </main>
+  </div>
+</section>
+<!--Hero section end-->
+
+<!--About section start-->
+<section id="about" class="about">
+  <h2><span>Tentang</span> Kami</h2>
+
+  <div class="row">
+    <div class="about-img">
+      <img src="img/img-2.jpeg.jpg" alt="Tentang Kami">
+    </div>
+    <div class="content">
+      <h3>Kenapa memilih kopi kami?</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ab itaque fuga rem. Libero sit atque, alias voluptas obcaecati fugiat.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis laudantium aliquam modi qui temporibus ullam voluptatem illo dolor animi enim.</p>
+    </div>   
+  </div>
+</section>
+<!--About section end-->
+
+<!-- menu section start -->
+ <section id="menu" class="menu">
+  <h2><span>Menu</span> Kami</h2>
+  <p>Lorem dolor sit, amet consectetur adipisicing elit. Repellat at ab debitis modi! Natus, magnam.</p>
+
+  <div class="row">
+    <div class="menu-card">
+      <img src="img/Menu/menu.jpeg.jpg" alt="Espresso class=menu-card-img">
+      <h3 class="menu-card-tittle">-Espresso-</h3>
+      <p class="menu-card-price">IDR 15k</p>
+    </div>
+    <div class="menu-card">
+      <img src="img/Menu/menu.jpeg.jpg" alt=""Espresso class="menu-card-img">
+      <h3 class="menu-card-tittle">-Espresso-</h3>
+      <p class="menu-card-price">IDR 15K</p>
+    </div>
+    <div class="menu-card">
+      <img src="img/Menu/menu.jpeg.jpg" alt=""Espresso class="menu-card-img">
+      <h3 class="menu-card-tittle">-Espresso-</h3>
+      <p class="menu-card-price">IDR 15k</p>
+    </div>
+    <div class="menu-card">
+      <img src="img/Menu/menu.jpeg.jpg" alt=""Espresso class="menu-card-img">
+      <h3 class="menu-card-tittle">-Espresso-</h3>
+      <p class="menu-card-price">IDR 15k</p>
+    </div>
+    <div class="menu-card">
+      <img src="img/Menu/menu/.jpeg.jpg" alt=""Espresso class="menu-card-img">
+      <h3 class="menu-card-tittle">-Espresso-</h3>
+      <p class="menu-card-price">IDR 15k</p>
+    </div>
+    <div class="menu-card">
+      <img src="img/Menu/menu.jpeg.jpg" alt=""Espresso class="menu-card-img">
+      <h3 class="menu-card-tittle">-Espresso-</h3>
+      <p class="menu-card-price">IDR 15k</p>
+    </div>
+  </div>
+ </section>
+ <!-- menu section start -->
+
+ <!-- product section start -->
+  <section class="products" id="products" x-data="products">
+    <h2><span>Produk Unggulan</span> Kami</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur elit. Impedit aut, id magnam eos nihil doloribus.</p>
+
+    <div class="row">
+      <templet x-for="(item, index) in items" x-key="index">
+        <div class="product-card">
+          <div class="product-icins">
+            <a href="#" @click.prevent="`$store.cart.add(item)`">
+              <svg
+              widht="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-widht="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#shopping-cart" />
+            </svg>
+            </a>
+            <a href="#" class="item-detail-button">
+              <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-widht="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#eye" />
+            </svg>
+            </a>
+          </div>
+          <div class="product-image">
+            <img :src="`img/products/${item.img}`" :alt="item.name">
+          </div>
+          <div class="product-content">
+            <h3 x-text="item.name"></h3>
+            <div class="product-stars">
+              <svg
+              width="24"
+              height="24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#star" />
+            </svg>
+            <svg
+              width="24"
+              height="24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#star" />
+            </svg>
+            <svg
+              width="24"
+              height="24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#star" />
+            </svg>
+            <svg
+            width="24"
+              height="24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#star" />
+              </svg>
+              <svg
+              width="24"
+              height="24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round">
+              <use href="img/feather-sprite.svg#star" />
+              </svg>
+            </div>
+            <div class="product-price"><span x-text="rupiah(item.price)"></span></div>
+          </div>
+        </div>
+      </templet>
+    </div>
+  </section>
+  <!-- product section end -->
+ 
+  <!-- contact section start-->
+   <section id="contact" class="contact">
+    <h2><span>kontak</span> Kami</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, voluptatum!</p>
+
+    <div class="row">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63748.735928338174!2d120.15878405364388!3d.0148947072324686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d93e03ef72f9f91%3A0x3030bfbcaf770c0!2spalopo%2C%20kec.%20wara%2C%20kota%20palopo%2C%20sulawesi%20selatan!5e0!3m2!1sid!2sid!4v1746603190514!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" clas="map"></iframe> "
+      
+    </div>
+   
+</body
+
+<body>
+<di>
+<!-- navbar star-->
+ <div class="navbar">
+ <a href="#" class="navbar-logo">kenangan<span>senja</span></a>
+
+ <div class="navbar-nav">
+    <a href="#home">Home</a>
+    <a href="#about">Tentang Kami</a>
+    <a href="#menu">Menu</a>
+    <a href="products">produk</a>
+    <a href="#contact">Kontak</a>
+  </div>
+  <div class="navbar-extra"></div>  
+  <a herf="#" id="search"><i data-feather="search"></i></a>
+  <a herf="#" id="shooping-cart-button"><i data-feather="shooping-cart"></i></a>
+  <a herf="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+</div>
+<!--search form start -->
+< class="search-f 
+
